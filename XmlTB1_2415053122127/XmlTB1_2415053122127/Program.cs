@@ -62,6 +62,30 @@ namespace XmlTB1_2415053122127
                 default:
                     Console.WriteLine("Lenh khong hop le");
                     break;
+                case "XPATH":
+                    try
+                    {
+                        object result = nav.Evaluate(arg);
+                        if (result is XPathNodeIterator iter)
+                        {
+                            if (iter.Count == 0)
+                                Console.WriteLine("Khong co ket qua");
+                            else
+                                while (iter.MoveNext())
+                                    Console.WriteLine($"{iter.Current.Name}: {iter.Current.Value}");
+                        }
+                        else if (result is double d)
+                            Console.WriteLine(d.ToString(CultureInfo.InvariantCulture));
+                        else if (result is bool b)
+                            Console.WriteLine(b ? "true" : "false");
+                        else
+                            Console.WriteLine(result.ToString());
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Bieu thuc XPath khong hop le");
+                    }
+                    break;
             }
         }
     }
