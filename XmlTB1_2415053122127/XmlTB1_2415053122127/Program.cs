@@ -86,6 +86,32 @@ namespace XmlTB1_2415053122127
                         Console.WriteLine("Bieu thuc XPath khong hop le");
                     }
                     break;
+                case "THUONG":
+                    XmlNodeList tatCaNhanVien = doc.SelectNodes("//nhanvien");
+                    long tongThuong = 0;
+                    bool coNguoiDuocThuong = false;
+
+                    foreach (XmlNode n in tatCaNhanVien)
+                    {
+                        int namVaoLam = int.Parse(n.Attributes["namvaolam"].Value);
+                        if (2026 - namVaoLam >= 5)
+                        {
+                            long luong = long.Parse(n["luong"].InnerText);
+                            long thuong = (long)Math.Floor(luong * 1.5);
+                            Console.WriteLine($"{n.Attributes["ma"].Value} - {n["hoten"].InnerText}: {thuong}");
+                            tongThuong += thuong;
+                            coNguoiDuocThuong = true;
+                        }
+                    }
+
+                    if (!coNguoiDuocThuong)
+                        Console.WriteLine("Khong co nhan vien duoc thuong");
+                    else
+                        Console.WriteLine($"Tong thuong: {tongThuong}");
+                    break;
+                default:
+                    Console.WriteLine("Lenh khong hop le");
+                    break;
             }
         }
     }
