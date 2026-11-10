@@ -53,3 +53,16 @@ namespace XmlTB1_2415053122127
                                 Console.WriteLine($"{n.Attributes["ma"].Value} - {n["hoten"].InnerText}");
                     }
                     break;
+                case "DEM":
+                    double soPhong = (double)nav.Evaluate("count(//phongban)");
+                    double soNhanVien = (double)nav.Evaluate("count(//nhanvien)");
+                    Console.WriteLine($"So phong ban: {soPhong}");
+                    Console.WriteLine($"So nhan vien: {soNhanVien}");
+                    break;
+                default:
+                    Console.WriteLine("Lenh khong hop le");
+                    break;
+            }
+        }
+    }
+}
