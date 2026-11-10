@@ -59,9 +59,6 @@ namespace XmlTB1_2415053122127
                     Console.WriteLine($"So phong ban: {soPhong}");
                     Console.WriteLine($"So nhan vien: {soNhanVien}");
                     break;
-                default:
-                    Console.WriteLine("Lenh khong hop le");
-                    break;
                 case "XPATH":
                     try
                     {
