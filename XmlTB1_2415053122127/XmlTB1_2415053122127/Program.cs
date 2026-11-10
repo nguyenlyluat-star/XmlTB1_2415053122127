@@ -37,3 +37,19 @@ namespace XmlTB1_2415053122127
                             Console.WriteLine($"{n.Attributes["ma"].Value} - {n["hoten"].InnerText} - {n["luong"].InnerText}");
                     }
                     break;
+                case "PHONG":
+                    XmlNode phong = doc.SelectSingleNode($"//phongban[@ma='{arg}']");
+                    if (phong == null)
+                    {
+                        Console.WriteLine($"Khong co phong {arg}");
+                    }
+                    else
+                    {
+                        XmlNodeList nvs = phong.SelectNodes("nhanvien");
+                        if (nvs.Count == 0)
+                            Console.WriteLine($"Phong {arg} chua co nhan vien");
+                        else
+                            foreach (XmlNode n in nvs)
+                                Console.WriteLine($"{n.Attributes["ma"].Value} - {n["hoten"].InnerText}");
+                    }
+                    break;
